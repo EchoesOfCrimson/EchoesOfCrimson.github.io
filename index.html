@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Echoes of Crimson — One shoot. Two directors. Two films.</title>
+<meta name="description" content="A Jack the Ripper film cut two ways. Eileen Daly's version and Jason Impey's version. Kickstarter, soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400&family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --crimson:#8B0000;
+  --crimson-hot:#B01818;
+  --crimson-ox:#4A0A0A;
+  --black:#1A1A1A;
+  --pitch:#0D0D0D;
+  --panel:#161616;
+  --grey:#6E6E6E;
+  --grey-lt:#EDEDED;
+  --white:#FFFFFF;
+  --display:"Bodoni Moda",Georgia,serif;
+  --util:"Archivo Narrow",Arial,sans-serif;
+  --body:"Archivo",Helvetica,Arial,sans-serif;
+  --split:50%;
+  --gutter:clamp(20px,5vw,64px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--pitch);
+  color:var(--grey-lt);
+  font-family:var(--body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--crimson);color:var(--white)}
+a{color:inherit}
+
+.eyebrow{
+  font-family:var(--util);
+  text-transform:uppercase;
+  letter-spacing:.34em;
+  font-size:11px;
+  font-weight:600;
+  color:var(--grey);
+}
+
+/* ---------- top bar ---------- */
+.bar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px var(--gutter);
+  background:linear-gradient(180deg,rgba(13,13,13,.96),rgba(13,13,13,0));
+  pointer-events:none;
+}
+.mark{
+  font-family:var(--display);font-weight:900;font-size:15px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--grey-lt);
+}
+.mark span{color:var(--crimson)}
+.bar .jump{
+  pointer-events:auto;
+  font-family:var(--util);text-transform:uppercase;letter-spacing:.2em;
+  font-size:10px;font-weight:700;color:var(--grey-lt);
+  text-decoration:none;border:1px solid #333;
+  padding:8px 14px;transition:.25s;
+}
+.bar .jump:hover,.bar .jump:focus-visible{background:var(--crimson);border-color:var(--crimson);color:#fff}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:110px var(--gutter) 48px;
+  position:relative;
+}
+.hero-head{max-width:1180px;margin:0 auto;width:100%}
+.rule{height:1px;background:linear-gradient(90deg,var(--crimson),#2a2a2a 60%,transparent);margin:18px 0 0}
+
+.title{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(44px,10.5vw,150px);
+  line-height:.84;
+  letter-spacing:-.025em;
+  color:var(--white);
+  text-transform:uppercase;
+  margin-top:14px;
+}
+.title em{
+  font-style:italic;font-weight:400;
+  color:var(--crimson);
+  letter-spacing:-.01em;
+}
+.sub{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:clamp(17px,2.4vw,30px);
+  color:var(--grey-lt);
+  margin-top:12px;
+  letter-spacing:.01em;
+}
+
+/* ---------- the split ---------- */
+.split-wrap{max-width:1180px;margin:26px auto 0;width:100%}
+.split{
+  position:relative;
+  aspect-ratio:21/9;
+  min-height:230px;
+  overflow:hidden;
+  border:1px solid #2b2b2b;
+  cursor:ew-resize;
+  user-select:none;
+  touch-action:none;
+  background:var(--pitch);
+}
+.pane{position:absolute;inset:0;isolation:isolate}
+.pane.eileen{z-index:1}
+.pane.jason{z-index:2}
+
+/* THE TITLE, CUT TWO WAYS — identical type, two worlds */
+.scene{position:absolute;inset:0;overflow:hidden}
+
+.field{position:absolute;inset:0}
+.pane.eileen .field{
+  background:
+    radial-gradient(72% 96% at 50% 52%, rgba(200,30,30,.42) 0%, transparent 62%),
+    radial-gradient(120% 120% at 50% 120%, #7d6f77 0%, #4a3f46 44%, #241d21 100%);
+}
+.pane.jason .field{
+  background:
+    radial-gradient(78% 100% at 50% 54%, #3c3c42 0%, #202024 46%, #0b0b0d 100%);
+}
+
+/* eileen: it splatters. jason: it doesn't. */
+.splat{position:absolute;inset:0;pointer-events:none}
+.splat i{
+  position:absolute;border-radius:50%;
+  background:#C81E1E;
+  filter:blur(.4px);
+}
+.pane.jason .splat{opacity:.5;filter:grayscale(1) brightness(.4)}
+.splat i:nth-child(1){left:12%;top:22%;width:15px;height:19px;transform:rotate(18deg)}
+.splat i:nth-child(2){left:19%;top:64%;width:8px;height:8px}
+.splat i:nth-child(3){left:80%;top:26%;width:11px;height:14px;transform:rotate(-24deg)}
+.splat i:nth-child(4){left:88%;top:58%;width:19px;height:12px;transform:rotate(12deg)}
+.splat i:nth-child(5){left:31%;top:13%;width:6px;height:6px}
+.splat i:nth-child(6){left:66%;top:82%;width:9px;height:11px}
+.splat i:nth-child(7){left:47%;top:8%;width:5px;height:7px}
+.splat i:nth-child(8){left:73%;top:70%;width:4px;height:4px}
+
+.titleblock{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 clamp(14px,3.5vw,52px);
+  font-family:var(--display);
+  font-weight:900;
+  text-transform:uppercase;
+  line-height:.82;
+  letter-spacing:-.03em;
+  font-size:clamp(34px,8.6vw,124px);
+  z-index:2;
+}
+.titleblock .l2{font-style:italic;font-weight:400;letter-spacing:-.012em;padding-left:.06em}
+
+.pane.eileen .titleblock{
+  color:#E8342F;
+  text-shadow:0 0 34px rgba(200,30,30,.5), 0 5px 0 rgba(0,0,0,.42);
+}
+.pane.eileen .titleblock .l2{color:#F2E9DC}
+.pane.jason .titleblock{
+  color:#E9E9EC;
+  text-shadow:0 0 40px rgba(0,0,0,.9);
+}
+.pane.jason .titleblock .l2{color:#75757c}
+
+/* it drips off the letters. only on her side. */
+.drips{position:absolute;inset:0;z-index:3;pointer-events:none}
+.drips i{
+  position:absolute;width:3px;background:#C81E1E;border-radius:0 0 3px 3px;
+}
+.drips i::after{
+  content:"";position:absolute;left:50%;bottom:-4px;
+  transform:translateX(-50%);
+  width:6px;height:6px;border-radius:50%;background:#C81E1E;
+}
+.pane.jason .drips{opacity:.45;filter:grayscale(1) brightness(.35)}
+.drips i:nth-child(1){left:9%;top:56%;height:15%}
+.drips i:nth-child(2){left:23%;top:58%;height:9%}
+.drips i:nth-child(3){left:41%;top:57%;height:20%}
+.drips i:nth-child(4){left:58%;top:59%;height:11%}
+.drips i:nth-child(5){left:76%;top:56%;height:17%}
+
+.fog{
+  position:absolute;left:-30%;right:-30%;bottom:-14%;height:58%;z-index:1;
+  background:radial-gradient(56% 100% at 50% 100%, rgba(220,220,232,.30), transparent 74%);
+  filter:blur(28px);
+  animation:drift 26s ease-in-out infinite alternate;
+}
+.fog.b{
+  bottom:-20%;height:46%;opacity:.5;
+  animation-duration:37s;animation-direction:alternate-reverse;
+  background:radial-gradient(46% 100% at 38% 100%, rgba(190,190,205,.34), transparent 76%);
+}
+@keyframes drift{from{transform:translateX(-4%)}to{transform:translateX(4%)}}
+
+.vig{
+  position:absolute;inset:0;z-index:4;
+  background:radial-gradient(84% 86% at 50% 50%, transparent 46%, rgba(0,0,0,.78) 100%);
+}
+.grain{
+  position:absolute;inset:0;z-index:5;opacity:.13;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* the slider: her colour  ->  his black */
+.pane.jason .scene{filter:grayscale(1) contrast(1.22)}
+.pane.jason{clip-path:inset(0 0 0 var(--split))}
+
+/* labels */
+.tag{
+  position:absolute;bottom:0;
+  font-family:var(--util);text-transform:uppercase;
+  letter-spacing:.22em;font-size:10px;font-weight:700;
+  padding:9px 13px;color:var(--white);
+  z-index:4;white-space:nowrap;
+}
+.tag.l{left:0;background:var(--crimson-hot)}
+.tag.r{right:0;background:#111114;color:#d8d8dc;border:1px solid #34343c;border-right:0;border-bottom:0}
+
+.handle{
+  position:absolute;top:0;bottom:0;left:var(--split);
+  width:2px;background:var(--grey-lt);
+  transform:translateX(-1px);z-index:5;
+  box-shadow:0 0 22px rgba(0,0,0,.9);
+}
+.grip{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:44px;height:44px;border-radius:50%;
+  background:var(--grey-lt);
+  display:grid;place-items:center;
+  color:var(--black);font-size:13px;letter-spacing:-2px;
+  box-shadow:0 0 0 1px rgba(0,0,0,.4),0 6px 24px rgba(0,0,0,.7);
+}
+.split:focus-visible{outline:2px solid var(--crimson-hot);outline-offset:3px}
+
+.hint{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:12px;gap:16px;flex-wrap:wrap;
+}
+.hint p{font-family:var(--util);text-transform:uppercase;letter-spacing:.2em;font-size:10px;color:var(--grey)}
+
+.thesis{
+  max-width:1180px;margin:44px auto 0;width:100%;
+  font-family:var(--display);
+  font-size:clamp(21px,3.4vw,44px);
+  line-height:1.24;color:var(--white);font-weight:400;
+  letter-spacing:-.01em;
+}
+.thesis b{font-weight:900;color:var(--crimson)}
+
+/* ---------- sections ---------- */
+section{padding:clamp(64px,9vw,120px) var(--gutter)}
+.inner{max-width:1180px;margin:0 auto}
+.h2{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(28px,4.4vw,58px);
+  line-height:1.02;color:var(--white);letter-spacing:-.02em;
+  margin-top:12px;
+}
+
+/* email — the actual job of this page */
+.capture{background:var(--panel);border-top:1px solid #262626;border-bottom:1px solid #262626}
+.capture .h2{max-width:16ch}
+.capture p.lede{color:var(--grey);max-width:52ch;margin-top:16px;font-size:16px;line-height:1.65}
+.form{display:flex;gap:10px;margin-top:26px;max-width:520px;flex-wrap:wrap}
+.form input{
+  flex:1 1 240px;min-width:0;
+  background:var(--pitch);border:1px solid #333;color:var(--white);
+  padding:15px 16px;font-family:var(--body);font-size:15px;
+}
+.form input::placeholder{color:#5a5a5a}
+.form input:focus{outline:2px solid var(--crimson);outline-offset:-1px;border-color:transparent}
+.form button{
+  background:var(--crimson);color:var(--white);border:0;
+  padding:15px 26px;cursor:pointer;
+  font-family:var(--util);text-transform:uppercase;letter-spacing:.18em;
+  font-size:11px;font-weight:700;transition:.2s;
+}
+.form button:hover,.form button:focus-visible{background:var(--crimson-hot)}
+.note{font-size:12px;color:#565656;margin-top:14px}
+.said{color:var(--crimson-hot);font-family:var(--util);text-transform:uppercase;letter-spacing:.16em;font-size:11px;margin-top:16px;min-height:14px}
+
+/* makers */
+.makers{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#262626;border:1px solid #262626;margin-top:40px}
+.maker{background:var(--pitch);padding:clamp(24px,3.4vw,44px)}
+.maker:first-child{border-top:3px solid var(--crimson-hot)}
+.maker:last-child{border-top:3px solid var(--crimson-ox)}
+.maker h3{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(24px,3vw,40px);color:var(--white);
+  text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin:10px 0 4px;
+}
+.role{font-family:var(--util);text-transform:uppercase;letter-spacing:.2em;font-size:10px;color:var(--crimson-hot);font-weight:700}
+.maker:last-child .role{color:#8a3030}
+.maker p{color:var(--grey);font-size:15px;line-height:1.7;margin-top:18px}
+.creds{list-style:none;margin-top:20px;border-top:1px solid #242424;padding-top:16px}
+.creds li{
+  font-family:var(--util);font-size:11px;text-transform:uppercase;letter-spacing:.13em;
+  color:#7d7d7d;padding:6px 0;display:flex;gap:11px;
+}
+.creds li::before{content:"—";color:var(--crimson);flex:none}
+
+/* kickstarter */
+.ks{background:var(--panel);border-top:1px solid #262626;text-align:center}
+.ks .h2{max-width:22ch;margin-inline:auto}
+.ks p{color:var(--grey);max-width:50ch;margin:18px auto 0;font-size:16px;line-height:1.65}
+.when{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(56px,13vw,150px);line-height:.86;
+  color:var(--crimson);text-transform:uppercase;letter-spacing:-.03em;
+  margin-top:26px;
+}
+.ks-note{font-family:var(--util);text-transform:uppercase;letter-spacing:.26em;font-size:10px;color:#565656;margin-top:20px}
+
+footer{padding:44px var(--gutter);border-top:1px solid #1f1f1f;text-align:center}
+footer p{font-family:var(--util);text-transform:uppercase;letter-spacing:.22em;font-size:10px;color:#4a4a4a;line-height:2.2}
+
+@media(max-width:760px){
+  .makers{grid-template-columns:1fr}
+  .split{aspect-ratio:4/3}
+  .title{font-size:clamp(38px,13vw,70px)}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="mark">Echoes of <span>Crimson</span></div>
+  <a class="jump" href="#notify">Get the launch alert</a>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-head">
+    <p class="eyebrow">Whitechapel · 1888 &nbsp;·&nbsp; A film by Eileen Daly &amp; Jason Impey</p>
+    <p class="sub">Shot once. Cut twice. <span style="color:#8B0000">Drag it.</span></p>
+    <div class="rule"></div>
+  </div>
+
+  <div class="split-wrap">
+    <div class="split" id="split" tabindex="0" role="slider"
+         aria-label="Compare Eileen's cut and Jason's cut"
+         aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+
+      <div class="pane eileen">
+        <div class="scene">
+          <div class="field"></div>
+          <div class="splat"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <h1 class="titleblock"><span class="l1">Echoes of</span><span class="l2">Crimson</span></h1>
+          <div class="drips"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="fog"></div>
+          <div class="fog b"></div>
+          <div class="vig"></div>
+          <div class="grain"></div>
+        </div>
+        <span class="tag l">Eileen's cut &middot; the comedy horror</span>
+      </div>
+
+      <div class="pane jason">
+        <div class="scene">
+          <div class="field"></div>
+          <div class="splat"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="titleblock" aria-hidden="true"><span class="l1">Echoes of</span><span class="l2">Crimson</span></div>
+          <div class="drips"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="fog"></div>
+          <div class="fog b"></div>
+          <div class="vig"></div>
+          <div class="grain"></div>
+        </div>
+        <span class="tag r">Jason's cut &middot; the dark one</span>
+      </div>
+
+      <div class="handle" id="handle"><div class="grip">◀▶</div></div>
+    </div>
+
+    <div class="hint">
+      <p>Drag to compare</p>
+      <p>Colour &rarr; Black &middot; Same film</p>
+    </div>
+  </div>
+
+  <p class="thesis" style="margin-top:clamp(36px,5vw,64px)">
+    One shoot. Two directors. <b>Two completely different films.</b> You get both.
+  </p>
+</header>
+
+<!-- EMAIL — the page's real job -->
+<section class="capture" id="notify">
+  <div class="inner">
+    <p class="eyebrow">Be there on day one</p>
+    <h2 class="h2">We launch on Kickstarter <span data-launch-line>very soon</span>.</h2>
+    <p class="lede">The first forty‑eight hours decide whether a film like this gets finished. Leave your email and we'll tell you the moment it opens — nothing else, and never your address to anyone.</p>
+    <form class="form" id="form" novalidate>
+      <input type="email" id="email" placeholder="your@email.com" aria-label="Email address" required>
+      <button type="submit">Notify me</button>
+    </form>
+    <p class="said" id="said" role="status"></p>
+    <p class="note">One email when we launch. That's the deal.</p>
+  </div>
+</section>
+
+<!-- MAKERS -->
+<section>
+  <div class="inner">
+    <p class="eyebrow">The two of them</p>
+    <h2 class="h2">Who made this, twice.</h2>
+
+    <div class="makers">
+      <article class="maker">
+        <p class="role">Director · The chaos cut</p>
+        <h3>Eileen Daly</h3>
+        <p>Four decades in British horror, and no permission asked for any of it. She debuted at sixteen in Soft Cell's “Tainted Love”, was trained by Fenella Fielding, and co‑founded Redemption Films — then became the face of it. Now she writes, directs, produces, edits and grades her own features.</p>
+        <ul class="creds">
+          <li>Razor Blade Smile — multiple awards, incl. Best B‑Film Actress</li>
+          <li>Cradle of Fear · Pervirella · Witchcraft X</li>
+          <li>25+ features · Eileen Daly Productions</li>
+          <li>Worked with Walken, McDowell, Siouxsie, Bradley</li>
+        </ul>
+      </article>
+
+      <article class="maker">
+        <p class="role">Cinematographer · The dark cut</p>
+        <h3>Jason Impey</h3>
+        <p>He picked up a camera at ten years old and has not put it down since. Self‑taught, relentlessly prolific, and known for re‑cutting his own work into entirely new films — which is, in a roundabout way, exactly how this project started.</p>
+        <ul class="creds">
+          <li>Shot and cut features out of Northampton</li>
+          <li>Long‑running collaborator with Eileen Daly</li>
+          <li>Called a poster boy for the British horror revival</li>
+          <li>The other half of the experiment</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- KICKSTARTER -->
+<section class="ks">
+  <div class="inner">
+    <p class="eyebrow">The campaign</p>
+    <h2 class="h2">The film is happening. Help us finish it — both ways.</h2>
+    <p>We've put our own money on the line to shoot this in August — no commissioner, no permission. What's left is post‑production: two edits, two grades, two mixes, and the fight to get it seen.</p>
+    <p class="when" data-launch-big>Soon</p>
+    <p class="ks-note">Kickstarter · Every backer gets both cuts</p>
+    <div style="margin-top:34px">
+      <a class="jump" href="#notify" style="pointer-events:auto;display:inline-block">Get the launch alert</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Echoes of Crimson · A film by Eileen Daly · Shot by Jason Impey<br>Whitechapel, 1888 · Kickstarter, <span data-launch-big>soon</span></p>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   LAUNCH DATE — THIS IS THE ONLY PLACE YOU EDIT IT.
+   Change the two lines below and the whole page updates.
+
+   Examples:
+     BIG  = "August 5"      LINE = "on 5 August"
+     BIG  = "Tuesday"       LINE = "this Tuesday"
+     BIG  = "Soon"          LINE = "very soon"
+   ═══════════════════════════════════════════════════════════════ */
+var LAUNCH_BIG  = "Now";
+var LAUNCH_LINE = "right now";
+
+(function(){
+  document.querySelectorAll('[data-launch-big]').forEach(function(el){ el.textContent = LAUNCH_BIG; });
+  document.querySelectorAll('[data-launch-line]').forEach(function(el){ el.textContent = LAUNCH_LINE; });
+  var split=document.getElementById('split'),
+      handle=document.getElementById('handle'),
+      dragging=false;
+
+  function setSplit(pct){
+    pct=Math.max(0,Math.min(100,pct));
+    split.style.setProperty('--split',pct+'%');
+    split.setAttribute('aria-valuenow',Math.round(pct));
+  }
+  function fromEvent(e){
+    var r=split.getBoundingClientRect(),
+        x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+    setSplit(x/r.width*100);
+  }
+  split.addEventListener('pointerdown',function(e){
+    dragging=true;split.setPointerCapture(e.pointerId);fromEvent(e);
+  });
+  split.addEventListener('pointermove',function(e){ if(dragging) fromEvent(e); });
+  window.addEventListener('pointerup',function(){ dragging=false; });
+  split.addEventListener('keydown',function(e){
+    var cur=parseFloat(split.getAttribute('aria-valuenow'));
+    if(e.key==='ArrowLeft'){setSplit(cur-4);e.preventDefault();}
+    if(e.key==='ArrowRight'){setSplit(cur+4);e.preventDefault();}
+  });
+
+  // gentle invitation on load — respects reduced motion
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var t=0, seq=[50,50,50,62,68,64,44,38,42,50];
+    var iv=setInterval(function(){
+      if(t>=seq.length||dragging){clearInterval(iv);return;}
+      setSplit(seq[t++]);
+    },130);
+  }
+
+  // email capture — REPLACE with your MailerLite embed
+  var form=document.getElementById('form'),
+      said=document.getElementById('said'),
+      email=document.getElementById('email');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=email.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){
+      said.textContent='That email doesn\u2019t look right — check it and try again.';
+      email.focus();return;
+    }
+    said.textContent='You\u2019re on the list. We\u2019ll write the day we launch.';
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>
