@@ -132,14 +132,16 @@ var SITE = {
     });
   }
 
-  // ── drag-to-compare slider (the homepage title) ────────────────────
+  // ── drag-to-compare slider (clips the pane itself, no CSS var needed) ─
   var split  = document.getElementById('split');
   var handle = document.getElementById('handle');
   if(split){
+    var top = split.querySelector('.pane.jason');   // the dark cut sits on top
     var apply = function(pct){
-      pct = Math.max(3, Math.min(97, pct));          // keep a sliver of each cut
-      split.style.setProperty('--pos', pct + '%');   // drives the reveal + effects
-      if(handle){ handle.style.left = pct + '%'; }    // handle follows the cursor
+      pct = Math.max(3, Math.min(97, pct));
+      split.style.setProperty('--pos', pct + '%');           // keep effects that use it
+      if(handle){ handle.style.left = pct + '%'; }
+      if(top){ top.style.clipPath = 'inset(0 0 0 ' + pct + '%)'; }  // reveal Eileen on the left
       split.setAttribute('aria-valuenow', Math.round(pct));
     };
     var fromX = function(clientX){
@@ -155,13 +157,12 @@ var SITE = {
     split.addEventListener('pointermove', function(e){ if(dragging){ fromX(e.clientX); } });
     split.addEventListener('pointerup',     function(){ dragging = false; });
     split.addEventListener('pointercancel', function(){ dragging = false; });
-    // it is a real slider, so arrow keys work too
     split.addEventListener('keydown', function(e){
       var now = parseFloat(split.getAttribute('aria-valuenow')) || 50;
       if(e.key === 'ArrowLeft'){  apply(now - 3); e.preventDefault(); }
       if(e.key === 'ArrowRight'){ apply(now + 3); e.preventDefault(); }
     });
-    apply(50); // start in the middle
+    apply(50);
   }
 
 })();
