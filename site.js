@@ -131,4 +131,37 @@ var SITE = {
       setTimeout(function(){ form.reset(); }, 400);
     });
   }
+
+  // ── drag-to-compare slider (the homepage title) ────────────────────
+  var split  = document.getElementById('split');
+  var handle = document.getElementById('handle');
+  if(split){
+    var apply = function(pct){
+      pct = Math.max(3, Math.min(97, pct));          // keep a sliver of each cut
+      split.style.setProperty('--pos', pct + '%');   // drives the reveal + effects
+      if(handle){ handle.style.left = pct + '%'; }    // handle follows the cursor
+      split.setAttribute('aria-valuenow', Math.round(pct));
+    };
+    var fromX = function(clientX){
+      var r = split.getBoundingClientRect();
+      apply(((clientX - r.left) / r.width) * 100);
+    };
+    var dragging = false;
+    split.addEventListener('pointerdown', function(e){
+      dragging = true;
+      if(split.setPointerCapture){ try{ split.setPointerCapture(e.pointerId); }catch(_){} }
+      fromX(e.clientX);
+    });
+    split.addEventListener('pointermove', function(e){ if(dragging){ fromX(e.clientX); } });
+    split.addEventListener('pointerup',     function(){ dragging = false; });
+    split.addEventListener('pointercancel', function(){ dragging = false; });
+    // it is a real slider, so arrow keys work too
+    split.addEventListener('keydown', function(e){
+      var now = parseFloat(split.getAttribute('aria-valuenow')) || 50;
+      if(e.key === 'ArrowLeft'){  apply(now - 3); e.preventDefault(); }
+      if(e.key === 'ArrowRight'){ apply(now + 3); e.preventDefault(); }
+    });
+    apply(50); // start in the middle
+  }
+
 })();
