@@ -138,7 +138,7 @@ var SITE = {
   if(split){
     var apply = function(pct){
       pct = Math.max(3, Math.min(97, pct));          // keep a sliver of each cut
-      split.style.setProperty('--pos', pct + '%');   // drives the reveal + effects
+      split.style.setProperty('--split', pct + '%'); // drives the reveal + effects
       if(handle){ handle.style.left = pct + '%'; }    // handle follows the cursor
       split.setAttribute('aria-valuenow', Math.round(pct));
     };
