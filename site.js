@@ -132,16 +132,14 @@ var SITE = {
     });
   }
 
-  // ── drag-to-compare slider (clips the pane itself, no CSS var needed) ─
+  // ── drag-to-compare slider (the homepage title) ────────────────────
   var split  = document.getElementById('split');
   var handle = document.getElementById('handle');
   if(split){
-    var top = split.querySelector('.pane.jason');   // the dark cut sits on top
     var apply = function(pct){
-      pct = Math.max(3, Math.min(97, pct));
-      split.style.setProperty('--pos', pct + '%');           // keep effects that use it
-      if(handle){ handle.style.left = pct + '%'; }
-      if(top){ top.style.clipPath = 'inset(0 0 0 ' + pct + '%)'; }  // reveal Eileen on the left
+      pct = Math.max(3, Math.min(97, pct));          // keep a sliver of each cut
+      split.style.setProperty('--pos', pct + '%');   // drives the reveal + effects
+      if(handle){ handle.style.left = pct + '%'; }    // handle follows the cursor
       split.setAttribute('aria-valuenow', Math.round(pct));
     };
     var fromX = function(clientX){
@@ -157,12 +155,41 @@ var SITE = {
     split.addEventListener('pointermove', function(e){ if(dragging){ fromX(e.clientX); } });
     split.addEventListener('pointerup',     function(){ dragging = false; });
     split.addEventListener('pointercancel', function(){ dragging = false; });
+    // it is a real slider, so arrow keys work too
     split.addEventListener('keydown', function(e){
       var now = parseFloat(split.getAttribute('aria-valuenow')) || 50;
       if(e.key === 'ArrowLeft'){  apply(now - 3); e.preventDefault(); }
       if(e.key === 'ArrowRight'){ apply(now + 3); e.preventDefault(); }
     });
-    apply(50);
+    apply(50); // start in the middle
   }
+
+  // ── share button (home page) ───────────────────────────────────────
+  // Phones open the native share sheet. Desktop copies the link and says so.
+  document.querySelectorAll('[data-share]').forEach(function(btn){
+    var note = btn.parentNode.querySelector('[data-share-note]');
+    var flash = function(msg){
+      if(!note){ return; }
+      note.textContent = msg;
+      setTimeout(function(){ note.textContent = ''; }, 2600);
+    };
+    btn.addEventListener('click', function(){
+      var url  = window.location.href.split('#')[0];
+      var data = {
+        title: btn.dataset.shareTitle || document.title,
+        text:  btn.dataset.shareText  || '',
+        url:   url
+      };
+      if(navigator.share){
+        navigator.share(data).catch(function(){ /* user cancelled — ignore */ });
+      }else if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url)
+          .then(function(){ flash('Link copied'); })
+          .catch(function(){ flash(url); });
+      }else{
+        flash(url);
+      }
+    });
+  });
 
 })();
