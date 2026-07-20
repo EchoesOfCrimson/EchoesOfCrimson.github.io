@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Echoes of Crimson — Coming soon</title>
+<meta name="description" content="A Jack the Ripper film, cut two ways by Eileen Daly and Jason Impey. Whitechapel, 1888. Coming soon — leave your email for the launch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400&family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crimson:#8B0000; --crimson-hot:#B01818; --pitch:#0D0D0D;
+    --grey:#6E6E6E; --grey-lt:#EDEDED; --white:#fff;
+    --display:"Bodoni Moda",Georgia,serif;
+    --util:"Archivo Narrow",Arial,sans-serif;
+    --body:"Archivo",Helvetica,Arial,sans-serif;
+
+    /* ── SWAP THE BACKGROUND HERE ──────────────────────────────
+       Change the filename below to any image in your repo, e.g.
+       poster-ripper.png · poster-mary-kelly.png · still-victorian-sepia.jpg
+       ────────────────────────────────────────────────────────── */
+    --bg:url("echoes-of-crimson-key-art.jpg");
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--pitch);color:var(--grey-lt);
+    font-family:var(--body);-webkit-font-smoothing:antialiased;
+    min-height:100svh;overflow-x:hidden;
+  }
+  ::selection{background:var(--crimson);color:var(--white)}
+  a{color:inherit}
+
+  .stage{position:relative;min-height:100svh;display:grid;place-items:center;padding:56px 22px;overflow:hidden}
+
+  /* background image + washes so any photo stays readable */
+  .bg{position:absolute;inset:0;z-index:0;
+    background-image:var(--bg);
+    background-size:cover;background-position:center;
+    filter:grayscale(.25) contrast(1.05) brightness(.62) saturate(.9);
+  }
+  .wash{position:absolute;inset:0;z-index:1;
+    background:
+      radial-gradient(120% 90% at 50% 12%, rgba(139,0,0,.28), transparent 60%),
+      linear-gradient(180deg, rgba(8,8,8,.72) 0%, rgba(8,8,8,.5) 42%, rgba(8,8,8,.9) 100%);
+  }
+  .vig{position:absolute;inset:0;z-index:2;
+    background:radial-gradient(90% 80% at 50% 46%, transparent 40%, rgba(0,0,0,.85) 100%);
+  }
+  /* the homepage's drifting fog, quietly reused */
+  .fog{position:absolute;left:-30%;right:-30%;bottom:-12%;height:52%;z-index:2;
+    background:radial-gradient(56% 100% at 50% 100%, rgba(210,210,224,.16), transparent 74%);
+    filter:blur(30px);animation:drift 30s ease-in-out infinite alternate;
+  }
+  @keyframes drift{from{transform:translateX(-4%)}to{transform:translateX(4%)}}
+  .grain{position:absolute;inset:0;z-index:3;opacity:.12;mix-blend-mode:overlay;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .panel{position:relative;z-index:4;width:100%;max-width:600px;text-align:center;
+    animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .eyebrow{font-family:var(--util);text-transform:uppercase;letter-spacing:.4em;
+    font-size:11px;font-weight:600;color:#a9a9b0}
+
+  .wordmark{font-family:var(--display);font-weight:900;text-transform:uppercase;
+    line-height:.86;letter-spacing:-.02em;margin-top:20px;color:var(--white);
+    font-size:clamp(46px,12vw,104px);text-shadow:0 6px 40px rgba(0,0,0,.7)}
+  .wordmark em{display:block;font-style:italic;font-weight:400;color:#E8342F;
+    letter-spacing:-.005em;text-shadow:0 0 34px rgba(200,30,30,.45)}
+
+  /* the bleed — a crimson line that fills once on load */
+  .bleed{height:2px;width:min(340px,72%);margin:26px auto 0;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+  .bleed::after{content:"";position:absolute;inset:0;transform-origin:left;
+    background:linear-gradient(90deg,var(--crimson),var(--crimson-hot));
+    animation:fill 1.6s .5s cubic-bezier(.6,0,.2,1) both}
+  @keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+  .credit{font-family:var(--util);text-transform:uppercase;letter-spacing:.24em;
+    font-size:12px;color:#c7c7cc;margin-top:22px}
+  .credit b{color:var(--white);font-weight:700}
+
+  .line{font-family:var(--display);font-style:italic;font-size:clamp(16px,2.6vw,22px);
+    color:var(--grey-lt);margin-top:20px;line-height:1.4}
+
+  .status{font-family:var(--util);text-transform:uppercase;letter-spacing:.34em;
+    font-size:11px;font-weight:700;color:#E8342F;margin-top:30px}
+
+  .ask{color:#c2c2c8;font-size:15px;line-height:1.6;margin:12px auto 0;max-width:44ch}
+
+  form{display:flex;gap:9px;margin:22px auto 0;max-width:440px;flex-wrap:wrap;justify-content:center}
+  form input[type=email]{flex:1 1 220px;min-width:0;background:rgba(10,10,10,.7);
+    border:1px solid #3a3a3a;color:var(--white);padding:15px 16px;font-family:var(--body);font-size:15px;
+    backdrop-filter:blur(4px)}
+  form input[type=email]::placeholder{color:#7a7a7a}
+  form input[type=email]:focus{outline:2px solid var(--crimson);outline-offset:-1px;border-color:transparent}
+  form button{background:var(--crimson);color:var(--white);border:0;padding:15px 24px;cursor:pointer;
+    font-family:var(--util);text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:700;transition:.2s}
+  form button:hover,form button:focus-visible{background:var(--crimson-hot)}
+
+  .said{min-height:14px;margin-top:14px;font-family:var(--util);text-transform:uppercase;
+    letter-spacing:.16em;font-size:11px;color:#E8342F}
+
+  .ks{margin-top:26px}
+  .btn-ks{display:inline-block;font-family:var(--util);text-transform:uppercase;letter-spacing:.18em;
+    font-size:11px;font-weight:700;text-decoration:none;padding:14px 26px;
+    border:1px solid var(--crimson);background:var(--crimson);color:#fff;transition:.2s}
+  .btn-ks:hover,.btn-ks:focus-visible{background:var(--crimson-hot);border-color:var(--crimson-hot)}
+
+  .note{font-family:var(--util);text-transform:uppercase;letter-spacing:.2em;font-size:10px;color:#6b6b70;margin-top:30px;line-height:2}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    .bleed::after{transform:scaleX(1)}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<main class="stage">
+  <div class="bg"></div>
+  <div class="wash"></div>
+  <div class="vig"></div>
+  <div class="fog"></div>
+  <div class="grain"></div>
+
+  <div class="panel">
+    <p class="eyebrow">Whitechapel · 1888</p>
+    <h1 class="wordmark">Echoes of <em>Crimson</em></h1>
+    <div class="bleed"></div>
+    <p class="credit">A film by <b>Eileen Daly</b> &amp; <b>Jason Impey</b></p>
+
+    <p class="line">Shot once. Cut twice. The Ripper is coming.</p>
+
+    <p class="status">Site opening soon</p>
+    <p class="ask">We're building this in the dark. Leave your email and we'll bring you in the moment it opens — and the second the Kickstarter goes live.</p>
+
+    <form id="form" novalidate>
+      <input type="email" id="email" name="fields[email]" placeholder="your@email.com" aria-label="Email address" required>
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+      <button type="submit">Keep me posted</button>
+    </form>
+    <iframe name="ml-sink" title="hidden" style="display:none;width:0;height:0;border:0" aria-hidden="true"></iframe>
+    <p class="said" id="said" role="status"></p>
+
+    <div class="ks">
+      <a class="btn-ks" data-ks="long" data-ks-fallback="#form" href="#form">Get the launch alert</a>
+    </div>
+
+    <p class="note">Two film makers · Two cuts · One shoot<br>Every backer gets both</p>
+  </div>
+</main>
+<script src="site.js"></script>
+</body>
+</html>
