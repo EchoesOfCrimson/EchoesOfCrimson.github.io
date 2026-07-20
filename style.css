@@ -5,13 +5,12 @@
   --black:#1A1A1A;
   --pitch:#0D0D0D;
   --panel:#161616;
-  --grey:#9A9A9A;
-  --grey-dim:#6E6E6E;
+  --grey:#6E6E6E;
   --grey-lt:#EDEDED;
   --white:#FFFFFF;
-  --display:"Playfair Display",Georgia,serif;
+  --display:"Bodoni Moda",Georgia,serif;
   --util:"Archivo Narrow",Arial,sans-serif;
-  --body:"Fraunces",Georgia,serif;
+  --body:"Archivo",Helvetica,Arial,sans-serif;
   --split:50%;
   --gutter:clamp(20px,5vw,64px);
 }
@@ -458,67 +457,39 @@ footer p{font-family:var(--util);text-transform:uppercase;letter-spacing:.22em;f
 .footer-socials svg{width:17px;height:17px;fill:currentColor}
 .footer-socials li.off{display:none}
 
-/* ---------- journal images ---------- */
-.post .body figure.shot{margin:22px 0 0;border:1px solid #242424;background:#0a0a0a}
-.post .body figure.shot img{display:block;width:100%;height:auto}
-.post .body figure.shot figcaption{
-  font-family:var(--util);text-transform:uppercase;letter-spacing:.14em;
-  font-size:10px;color:var(--grey-dim);padding:10px 12px;margin:0;
+/* ---------- the film (bio + posters) ---------- */
+.film{border-top:1px solid #1f1f1f}
+.film .h2{max-width:26ch}
+.film-grid{
+  display:grid;
+  grid-template-columns:1fr 1.05fr;
+  gap:clamp(28px,4vw,56px);
+  margin-top:44px;
+  align-items:start;
 }
-.post .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:16px}
-.post .gallery img{
-  display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:3/2;
-  border:1px solid #242424;background:#0a0a0a;
+.posters{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.poster{
+  border:1px solid #2b2b2b;
+  background:var(--panel);
+  overflow:hidden;line-height:0;
 }
-
-/* ---------- share ---------- */
-.share-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:24px}
-.share-note{
-  font-family:var(--util);text-transform:uppercase;letter-spacing:.16em;
-  font-size:10px;color:var(--crimson-hot);min-height:12px;
+.poster img{
+  width:100%;aspect-ratio:9/16;
+  object-fit:cover;display:block;
+  transition:transform .5s ease,filter .5s ease;
+  filter:saturate(.94);
 }
-.btn-share::before{content:"↗ ";opacity:.7}
-
-/* ---------- cast & crew ---------- */
-.leads{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#262626;border:1px solid #262626;margin-top:8px}
-.lead{background:var(--pitch)}
-.lead:first-child{border-top:3px solid var(--crimson-hot)}
-.lead:last-child{border-top:3px solid var(--crimson-ox)}
-.lead .portrait{aspect-ratio:3/4;background:#0a0a0a;overflow:hidden;border-bottom:1px solid #242424}
-.lead .portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(.15) contrast(1.02)}
-.lead .lead-in{padding:clamp(20px,3vw,34px) clamp(20px,3vw,34px) 0}
-.lead h3{
-  font-family:var(--display);font-weight:900;
-  font-size:clamp(24px,3vw,40px);color:var(--white);
-  text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin:10px 0 4px;
+.poster:hover img{transform:scale(1.03);filter:saturate(1.08)}
+.film-copy{max-width:60ch}
+.film-bio p{color:var(--grey-lt);font-size:16px;line-height:1.72}
+.film-bio p+p{margin-top:16px}
+.film-ask{
+  color:var(--grey);font-size:15px;line-height:1.65;
+  margin-top:28px;padding-top:22px;
+  border-top:1px solid #242424;max-width:54ch;
 }
-.lead p{color:var(--grey);font-size:15px;line-height:1.7;margin-top:14px}
-.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding:0 clamp(20px,3vw,34px) clamp(22px,3vw,30px)}
-.links a{
-  font-family:var(--util);text-transform:uppercase;letter-spacing:.14em;
-  font-size:10px;font-weight:700;color:var(--grey-lt);
-  border:1px solid #3a3a3a;padding:8px 12px;text-decoration:none;transition:.2s;
-}
-.links a:hover,.links a:focus-visible{border-color:var(--crimson);background:var(--crimson);color:#fff}
-.links a.todo{color:#5f5f66;border-style:dashed;pointer-events:none}
-
-.crew{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:#242424;border:1px solid #242424;margin-top:8px}
-.crew article{background:var(--pitch);padding:clamp(20px,2.6vw,30px)}
-.crew h3{font-family:var(--display);font-weight:700;font-size:22px;color:var(--white);line-height:1.05;margin-top:6px}
-.crew p{color:var(--grey);font-size:14px;line-height:1.65;margin-top:10px}
-.crew .links{padding:0;margin-top:16px}
-@media(max-width:760px){.leads{grid-template-columns:1fr}}
-
-/* ---------- homepage bio portraits ---------- */
-.maker .portrait{
-  margin:calc(-1 * clamp(24px,3.4vw,44px)) calc(-1 * clamp(24px,3.4vw,44px)) clamp(20px,2.4vw,30px);
-  aspect-ratio:4/5;
-  background:#0a0a0a;
-  overflow:hidden;
-  border-bottom:1px solid #242424;
-}
-.maker .portrait img{
-  width:100%;height:100%;display:block;
-  object-fit:cover;object-position:center top;
-  filter:grayscale(.15) contrast(1.02);
+.film .cta-row{margin-top:22px}
+@media(max-width:860px){
+  .film-grid{grid-template-columns:1fr}
+  .film-copy{max-width:none}
 }
