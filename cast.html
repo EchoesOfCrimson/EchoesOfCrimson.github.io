@@ -9,6 +9,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Archivo+Narrow:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Cast & Crew page — scoped card styling. Does NOT touch style.css or the homepage. */
+  .leads{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#262626;border:1px solid #262626;margin-top:36px}
+  .lead{background:var(--pitch);padding:clamp(22px,3vw,40px)}
+  .lead .portrait img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top;border-radius:2px;display:block;margin-bottom:20px}
+  .lead h3{font-family:var(--display);font-size:clamp(24px,3vw,32px);font-weight:700;color:var(--white);line-height:1.05;margin-top:6px}
+  .lead p{color:var(--grey);font-size:15px;line-height:1.7;margin-top:14px}
+
+  .crew{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:#262626;border:1px solid #262626;margin-top:28px}
+  .crew article{background:var(--panel);padding:22px;display:flex;flex-direction:column}
+  .headshot{width:100%;aspect-ratio:4/5;margin-bottom:16px;border-radius:2px;overflow:hidden;background:#161616 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23161616'/%3E%3Ccircle cx='50' cy='40' r='17' fill='%233a3a3a'/%3E%3Cpath d='M22 88a28 28 0 0 1 56 0z' fill='%233a3a3a'/%3E%3C/svg%3E") center/cover no-repeat}
+  .headshot img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+  .crew h3{font-family:var(--display);font-size:20px;font-weight:700;color:var(--white);line-height:1.1;margin-top:2px}
+  .crew p{color:var(--grey);font-size:13.5px;line-height:1.6;margin-top:8px;flex:1 0 auto}
+
+  .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .links a{font-family:var(--util);text-transform:uppercase;letter-spacing:.12em;font-size:10px;font-weight:700;color:var(--grey-lt);border:1px solid #333;padding:6px 10px;border-radius:2px;text-decoration:none;transition:border-color .15s,color .15s}
+  .links a:hover{border-color:var(--crimson-hot);color:var(--white)}
+  .links a.todo{color:#565656;border-style:dashed;pointer-events:none}
+
+  @media(max-width:640px){ .leads{grid-template-columns:1fr} }
+</style>
 </head>
 <body>
 <nav class="nav">
@@ -57,15 +79,17 @@
       <article class="lead">
         <div class="portrait"><img src="eileen-daly-portrait.jpg" alt="Eileen Daly"></div>
         <div class="lead-in">
-          <p class="role">Film Maker · The chaos cut</p>
+          <p class="role">Film Maker · The chaos cut · On screen as Mary Kelly</p>
           <h3>Eileen Daly</h3>
-          <p>Four decades in British horror, and no permission asked for any of it. She debuted at sixteen in Soft Cell's “Tainted Love”, was trained by Fenella Fielding, and co‑founded Redemption Films — then became the face of it. Now she writes, directs, produces, edits and grades her own features. Razor Blade Smile, Cradle of Fear, Pervirella, Witchcraft X — 25+ features and counting.</p>
+          <p>Four decades in British horror, and no permission asked for any of it. She debuted at sixteen in Soft Cell's “Tainted Love”, was trained by Fenella Fielding, and co‑founded Redemption Films — then became the face of it. Now she writes, directs, produces, edits and grades her own features. Razor Blade Smile, Cradle of Fear, Pervirella, Witchcraft X — 25+ features and counting. On <em>Echoes of Crimson</em> she directs the chaos cut and steps in front of the lens as Mary Kelly herself.</p>
         </div>
-        <!-- Eileen's links — swap the # for her real addresses and delete class="todo" on each -->
         <div class="links">
-          <a class="todo" href="#">IMDb</a>
-          <a class="todo" href="#">Instagram</a>
-          <a class="todo" href="#">Website</a>
+          <a href="https://www.imdb.com/name/nm0198432/">IMDb</a>
+          <a href="https://www.instagram.com/eileendaly666/">Instagram</a>
+          <a href="https://www.eileendalyproductions.com/">Website</a>
+          <a href="https://www.facebook.com/EileenDaly666">Facebook</a>
+          <a href="https://www.youtube.com/@EileenDalyProductions">YouTube</a>
+          <a href="https://x.com/eileenstarlet">X</a>
         </div>
       </article>
 
@@ -101,32 +125,83 @@
     <div class="crew">
 
       <article>
-        <p class="role">Lead</p>
-        <h3>Cast name TBC</h3>
-        <p>Role and a line about them goes here.</p>
-        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a></div>
+        <div class="headshot"><img src="peter-jakeson-portrait.jpg" alt="Peter Jakeson" onerror="this.style.display='none'"></div>
+        <p class="role">The ghost-hunting team</p>
+        <h3>Peter Jakeson</h3>
+        <p>When a part needs teeth, he&rsquo;s the call &mdash; Moriarty, Dracula, the lead in <em>The Hit</em>. He&rsquo;s shared a set with Eileen and Jason before, on <em>Dracula: Rise of the Vampire</em>, and it was a great one. Thrives as the villain.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
       </article>
 
       <article>
-        <p class="role">Lead</p>
-        <h3>Cast name TBC</h3>
-        <p>Role and a line about them goes here.</p>
-        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a></div>
+        <div class="headshot"><img src="tricia-blades-portrait.jpg" alt="Tricia Blades" onerror="this.style.display='none'"></div>
+        <p class="role">The ghost-hunting team</p>
+        <h3>Tricia Blades</h3>
+        <p>Journalist, reluctant actress, lifelong Ripper obsessive. A childhood friend of Eileen&rsquo;s, bonded young over true crime and Spiritualism. She ran Teletext&rsquo;s <em>Bamboozle</em> and played the Camera Girl in <em>She&rsquo;s a Bitch</em>. She isn&rsquo;t acting the fascination.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
       </article>
 
       <article>
-        <p class="role">Supporting</p>
-        <h3>Cast name TBC</h3>
-        <p>Role and a line about them goes here.</p>
-        <div class="links"><a class="todo" href="#">IMDb</a></div>
+        <div class="headshot"><img src="heather-waugh-portrait.jpg" alt="Heather Waugh" onerror="this.style.display='none'"></div>
+        <p class="role">The ghost-hunting team</p>
+        <h3>Heather Waugh</h3>
+        <p>Actor, former model, writer and voice artist. A national&#8209;press glamour model at 19, retired at 36 &mdash; until a 40&#8209;year friendship with Eileen pulled her back to the screen for <em>She&rsquo;s a Bitch</em>. She returns here, hooked again.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
       </article>
 
       <article>
-        <p class="role">Supporting</p>
-        <h3>Cast name TBC</h3>
-        <p>Role and a line about them goes here.</p>
-        <div class="links"><a class="todo" href="#">IMDb</a></div>
+        <div class="headshot"><img src="nathan-head-portrait.jpg" alt="Nathan Head" onerror="this.style.display='none'"></div>
+        <p class="role">The ghost-hunting team</p>
+        <h3>Nathan Head</h3>
+        <p>A familiar face in British indie horror &mdash; <em>Dracula: Rise of the Vampire</em>, <em>Hellriser</em>, <em>Theatre of Fear</em>, <em>The Toymaker</em>. Off&#8209;camera, a paranormal presenter who fronted <em>Apparitions</em> (Prime, Tubi) and <em>Cold Blood</em>. Horror either side of the lens.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
       </article>
+
+      <article>
+        <div class="headshot"></div>
+        <p class="role">The ghost-hunting team</p>
+        <h3>Name TBC</h3>
+        <p>Coming soon.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
+      </article>
+
+      <article>
+        <div class="headshot"></div>
+        <p class="role">The ghost-hunting team</p>
+        <h3>Name TBC</h3>
+        <p>Coming soon.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
+      </article>
+
+      <article>
+        <div class="headshot"></div>
+        <p class="role">The ghost-hunting team</p>
+        <h3>Name TBC</h3>
+        <p>Coming soon.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
+      </article>
+
+      <article>
+        <div class="headshot"></div>
+        <p class="role">The ghost-hunting team</p>
+        <h3>Name TBC</h3>
+        <p>Coming soon.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
+      </article>
+
+<!-- ═══ COPY-PASTE TEMPLATE — duplicate one <article> block to add a person ═══
+     • Headshot: put their photo file in the repo named e.g. firstname-lastname-portrait.jpg
+       and set src to match. No photo yet? Delete the <img...> and leave the empty
+       <div class="headshot"></div> — a silhouette shows automatically.
+     • Links: real link = no class ( <a href="https://...">IMDb</a> ).
+       Placeholder = class="todo" (dashed, non-clicking) until you add the address.
+      <article>
+        <div class="headshot"><img src="firstname-lastname-portrait.jpg" alt="Full Name" onerror="this.style.display='none'"></div>
+        <p class="role">The ghost-hunting team</p>
+        <h3>Full Name</h3>
+        <p>One or two lines about them.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
+      </article>
+     ═══════════════════════════════════════════════════════════════════════ -->
 
     </div>
   </div>
@@ -139,32 +214,67 @@
     <div class="crew">
 
       <article>
-        <p class="role">Producer</p>
-        <h3>Name TBC</h3>
-        <p>What they do on this one.</p>
-        <div class="links"><a class="todo" href="#">IMDb</a></div>
+        <div class="headshot"><img src="jason-impey-portrait.jpg" alt="Jason Impey" onerror="this.style.display='none'"></div>
+        <p class="role">Cinematography · Editing · Sound · Lighting</p>
+        <h3>Jason Impey</h3>
+        <p>The technical engine of the shoot &mdash; behind the camera, on the lights, running sound, and cutting the dark version afterwards. Also one of the two film makers. He wears every hat and drops none.</p>
+        <div class="links"><a href="https://linktr.ee/jasonimpey">Linktree</a><a class="todo" href="#">IMDb</a></div>
       </article>
 
       <article>
-        <p class="role">Director of Photography</p>
-        <h3>Name TBC</h3>
-        <p>What they do on this one.</p>
-        <div class="links"><a class="todo" href="#">IMDb</a></div>
+        <div class="headshot"><img src="rachel-impey-portrait.jpg" alt="Rachel Impey" onerror="this.style.display='none'"></div>
+        <p class="role">Assistant Director · Production · Promotion</p>
+        <h3>Rachel Impey</h3>
+        <p>The all&#8209;rounder holding the production together &mdash; assistant director on set, and behind the scenes the web, the marketing, the artwork and the promotion. If it needs doing, it lands with Rachel.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
       </article>
 
       <article>
+        <div class="headshot"><img src="robbie-drake-portrait.jpg" alt="Robbie Drake" onerror="this.style.display='none'"></div>
+        <p class="role">Special Effects · VFX</p>
+        <h3>Robbie Drake</h3>
+        <p>Special effects and visual effects, with big work behind him. Full bio to follow.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
+      </article>
+
+      <article>
+        <div class="headshot"></div>
         <p class="role">Score</p>
         <h3>Name TBC</h3>
-        <p>Music written for it, not borrowed.</p>
-        <div class="links"><a class="todo" href="#">Website</a></div>
+        <p>Coming soon.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
       </article>
 
       <article>
-        <p class="role">SFX &amp; Makeup</p>
+        <div class="headshot"></div>
+        <p class="role">Crew</p>
         <h3>Name TBC</h3>
-        <p>The blood, and how it lands.</p>
-        <div class="links"><a class="todo" href="#">Instagram</a></div>
+        <p>Coming soon.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
       </article>
+
+      <article>
+        <div class="headshot"></div>
+        <p class="role">Crew</p>
+        <h3>Name TBC</h3>
+        <p>Coming soon.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
+      </article>
+
+<!-- ═══ COPY-PASTE TEMPLATE — duplicate one <article> block to add a person ═══
+     • Headshot: put their photo file in the repo named e.g. firstname-lastname-portrait.jpg
+       and set src to match. No photo yet? Delete the <img...> and leave the empty
+       <div class="headshot"></div> — a silhouette shows automatically.
+     • Links: real link = no class ( <a href="https://...">IMDb</a> ).
+       Placeholder = class="todo" (dashed, non-clicking) until you add the address.
+      <article>
+        <div class="headshot"><img src="firstname-lastname-portrait.jpg" alt="Full Name" onerror="this.style.display='none'"></div>
+        <p class="role">The ghost-hunting team</p>
+        <h3>Full Name</h3>
+        <p>One or two lines about them.</p>
+        <div class="links"><a class="todo" href="#">IMDb</a><a class="todo" href="#">Instagram</a><a class="todo" href="#">Facebook</a></div>
+      </article>
+     ═══════════════════════════════════════════════════════════════════════ -->
 
     </div>
     <div class="cta-row">
