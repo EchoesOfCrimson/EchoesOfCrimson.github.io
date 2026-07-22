@@ -435,6 +435,31 @@ footer p{font-family:var(--util);text-transform:uppercase;letter-spacing:.22em;f
 .post .body strong{color:var(--grey-lt);font-weight:600}
 @media(max-width:720px){.post{grid-template-columns:1fr;gap:10px}}
 
+/* Journal images — capped by HEIGHT so portrait and landscape both behave.
+   Change the max-height numbers below to resize. Nothing else needed. */
+.shot{margin:22px 0;max-width:100%}
+.shot img{
+  max-width:100%;max-height:520px;
+  width:auto;height:auto;display:block;
+  border:1px solid #2b2b2b;border-radius:2px;
+}
+.shot figcaption{
+  font-family:var(--util);text-transform:uppercase;letter-spacing:.12em;
+  font-size:10px;color:#6a6a6a;margin-top:9px;line-height:1.6;
+}
+.gallery{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;margin:22px 0;max-width:560px;
+}
+.gallery img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;
+  display:block;border:1px solid #2b2b2b;border-radius:2px;
+}
+@media(max-width:720px){
+  .shot img{max-height:340px}
+  .gallery{max-width:100%;gap:7px}
+}
+
 /* ---------- watch ---------- */
 .vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:26px;margin-top:8px}
 .vid figure{border:1px solid #242424;background:var(--panel)}
@@ -462,12 +487,12 @@ footer p{font-family:var(--util);text-transform:uppercase;letter-spacing:.22em;f
 .film .h2{max-width:26ch}
 .film-grid{
   display:grid;
-  grid-template-columns:1fr 1.05fr;
+  grid-template-columns:minmax(0,.68fr) minmax(0,1fr);
   gap:clamp(28px,4vw,56px);
   margin-top:44px;
   align-items:start;
 }
-.posters{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.posters{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:460px}
 .poster{
   border:1px solid #2b2b2b;
   background:var(--panel);
