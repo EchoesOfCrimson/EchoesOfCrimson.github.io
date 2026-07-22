@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Backer Wall — Echoes of Crimson</title>
+<meta name="description" content="Every name that backed Echoes of Crimson, in the order they arrived. First in, top of the wall.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Archivo+Narrow:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* ── The alley wall. Scoped to this page only — touches nothing global. ── */
+.alley{
+  position:relative;overflow:hidden;
+  margin-top:clamp(34px,5vw,58px);
+  background-color:#0A0A0A;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.030) 0 1px, transparent 1px 44px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.022) 0 1px, transparent 1px 104px);
+  border-top:1px solid #1F1F1F;
+  border-bottom:1px solid #1F1F1F;
+}
+.gaslight{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(40% 48% at 11% -4%, rgba(226,188,116,.17), transparent 68%);
+  animation:gasflicker 7s ease-in-out infinite alternate;
+}
+@keyframes gasflicker{
+  0%{opacity:.82} 22%{opacity:1} 41%{opacity:.74} 63%{opacity:.95} 100%{opacity:.86}
+}
+.wall-inner{
+  position:relative;z-index:6;
+  max-width:1180px;margin:0 auto;
+  padding:clamp(38px,5vw,68px) var(--gutter) clamp(46px,6vw,80px);
+}
+.wall-legend{
+  font-family:var(--util);text-transform:uppercase;letter-spacing:.26em;
+  font-size:10px;color:#5A5A60;margin-bottom:22px;
+}
+.wall-legend b{color:var(--crimson-hot);font-weight:600}
+
+.wall{list-style:none;margin:0;padding:0}
+.wall li{
+  display:flex;align-items:baseline;gap:16px;
+  padding:13px 0;
+  border-bottom:1px solid rgba(255,255,255,.055);
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(17px,2.3vw,27px);
+  line-height:1.2;color:#B9B9C1;
+  letter-spacing:.015em;
+  transition:color .22s, text-shadow .22s;
+  break-inside:avoid;-webkit-column-break-inside:avoid;
+}
+.wall li:hover{color:var(--white);text-shadow:0 0 22px rgba(176,24,24,.55)}
+.wall .num{
+  font-family:var(--util);font-size:10px;font-weight:600;
+  letter-spacing:.2em;color:#4E4E55;
+  flex:none;width:62px;
+}
+.wall li.charter{color:#E4E4EA}
+.wall li.charter .num{color:var(--crimson-hot)}
+@media(min-width:900px){
+  .wall{columns:2;column-gap:60px}
+}
+
+.wall-empty{
+  position:relative;z-index:6;
+  max-width:1180px;margin:0 auto;
+  padding:clamp(52px,8vw,110px) var(--gutter);
+  text-align:center;
+}
+.wall-empty p{
+  font-family:var(--display);font-style:italic;
+  font-size:clamp(18px,2.6vw,30px);color:#6E6E76;
+  max-width:34ch;margin:0 auto;
+}
+.wall-empty .eyebrow{margin-bottom:16px}
+
+@media(prefers-reduced-motion:reduce){
+  .gaslight{animation:none}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-in">
+    <a class="mark" href="index.html">Echoes of <span>Crimson</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="kickstarter.html">The Campaign</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="watch.html">Watch</a></li>
+      <li><a href="cast.html">Cast &amp; Crew</a></li>
+      <li><a href="backers.html" aria-current="page">Backer Wall</a></li>
+    </ul>
+    <div class="nav-right">
+      <ul class="socials"><li data-social="instagram"></li><li data-social="tiktok"></li><li data-social="youtube"></li><li data-social="facebook"></li><li data-social="x"></li></ul>
+      <a class="btn btn-ks" data-ks="short" data-ks-fallback="index.html#notify" href="index.html#notify">Notify me</a>
+    </div>
+  </div>
+</nav>
+
+<header class="phead">
+  <div class="inner">
+    <p class="eyebrow">The Backer Wall</p>
+    <h1 class="ptitle">The names<br><em>on the wall</em></h1>
+    <p class="plede">Scratched up in the order they arrived. First in, top of the wall — and it stays that way for good.</p>
+  </div>
+</header>
+
+<section class="alley">
+  <div class="gaslight"></div>
+  <div class="fog"></div>
+  <div class="vig"></div>
+  <div class="grain"></div>
+
+  <div class="wall-inner" id="wall-wrap" hidden>
+    <p class="wall-legend"><b data-wall-count>0</b> names &nbsp;·&nbsp; the first <b data-charter-count>50</b> are marked in red</p>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ADD NAMES HERE — this is the only part of the file you edit.
+
+     One name per line, in this exact shape:
+
+         <li>Their Name</li>
+
+     NEW NAMES GO AT THE BOTTOM of the list, just above the line
+     that says "END OF NAMES". The wall is chronological — first
+     backer sits at the top forever, so never re-order it.
+
+     The numbers (No. 001, No. 002...) are added automatically.
+     Do NOT type them yourself.
+
+     Copy exactly what you see, including both angle brackets.
+     If a name has an & in it, write &amp; instead.
+     ══════════════════════════════════════════════════════════════ -->
+
+    <ol class="wall" id="wall">
+
+      <!-- EXAMPLE — delete these three lines when your first real backer lands -->
+      <li>Your first backer's name</li>
+      <li>And the second</li>
+      <li>And so on</li>
+
+    </ol>
+<!-- ═══════════════════ END OF NAMES ═══════════════════ -->
+
+  </div>
+
+  <div class="wall-empty" id="wall-empty" hidden>
+    <p class="eyebrow">Nobody yet</p>
+    <p>The wall's bare. Someone has to be No. 001 — and whoever it is stays No. 001 for as long as this page exists.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="inner" style="padding:clamp(48px,6vw,88px) var(--gutter)">
+    <p class="eyebrow">How you get up there</p>
+    <h2 class="h2">Back it, and you're<br>on the brick.</h2>
+    <p style="max-width:52ch;margin-top:20px;color:#8A8A92;line-height:1.65">
+      The Backer Wall is a reward tier. Pledge at that level or above and your name goes up in the order your pledge came in — not by how much you gave, not alphabetically. Whoever's early is high on the wall, and nothing moves them.
+    </p>
+    <p style="max-width:52ch;margin-top:14px;color:#8A8A92;line-height:1.65">
+      After the campaign closes we'll send a short survey asking exactly how you want to be named. Real name, handle, the name of someone you've lost — your call. Leave it blank and you stay off the wall entirely; nobody gets listed who didn't ask to be.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-lg btn-ks" data-ks="long" data-ks-fallback="index.html#notify" href="index.html#notify">Get the launch alert</a>
+      <span class="secondary">Or read <a href="kickstarter.html">the full campaign</a>.</span>
+    </div>
+    <p class="note">Names are added by hand, usually within a few days of a pledge landing. If yours isn't up after a week, chase us — it'll be our mistake, not yours.</p>
+  </div>
+</section>
+
+<footer>
+  <ul class="footer-socials"><li data-social="instagram"></li><li data-social="tiktok"></li><li data-social="youtube"></li><li data-social="facebook"></li><li data-social="x"></li></ul>
+  <p>Echoes of Crimson · A film by Eileen Daly · Shot by Jason Impey<br>Whitechapel, 1888 · Kickstarter, <span data-launch-big>now</span></p>
+</footer>
+
+<script src="site.js"></script>
+<script>
+/* ══════════════════════════════════════════════════════════════════
+   WALL MACHINERY — you don't need to touch this.
+
+   The one thing you CAN change is the number below: how many of the
+   earliest names get marked out in red as the founding group.
+   ══════════════════════════════════════════════════════════════════ */
+var CHARTER_COUNT = 50;
+
+(function(){
+  var wall  = document.getElementById('wall');
+  var wrap  = document.getElementById('wall-wrap');
+  var empty = document.getElementById('wall-empty');
+  if(!wall || !wrap || !empty) return;
+
+  var items = wall.querySelectorAll('li');
+
+  if(!items.length){
+    empty.hidden = false;
+    return;
+  }
+
+  wrap.hidden = false;
+
+  items.forEach(function(li, i){
+    var n = document.createElement('span');
+    n.className = 'num';
+    n.textContent = 'No. ' + String(i + 1).padStart(3, '0');
+    li.insertBefore(n, li.firstChild);
+    if(i < CHARTER_COUNT) li.classList.add('charter');
+  });
+
+  document.querySelectorAll('[data-wall-count]').forEach(function(el){
+    el.textContent = items.length;
+  });
+  document.querySelectorAll('[data-charter-count]').forEach(function(el){
+    el.textContent = CHARTER_COUNT;
+  });
+})();
+</script>
+</body>
+</html>
