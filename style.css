@@ -93,11 +93,12 @@ a{color:inherit}
 .pane.eileen .field{
   background:
     radial-gradient(72% 96% at 50% 52%, rgba(200,30,30,.42) 0%, transparent 62%),
-    radial-gradient(120% 120% at 50% 120%, #7d6f77 0%, #4a3f46 44%, #241d21 100%);
+    url("slider-eyes.jpg") center 30% / cover no-repeat;
 }
 .pane.jason .field{
   background:
-    radial-gradient(78% 100% at 50% 54%, #3c3c42 0%, #202024 46%, #0b0b0d 100%);
+    radial-gradient(78% 100% at 50% 54%, rgba(60,60,66,.28) 0%, rgba(11,11,13,.62) 100%),
+    url("slider-eyes.jpg") center 30% / cover no-repeat;
 }
 
 /* eileen: it splatters. jason: it doesn't. */
