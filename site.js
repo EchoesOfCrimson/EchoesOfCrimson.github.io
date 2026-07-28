@@ -16,7 +16,7 @@ var SITE = {
      The moment you paste your real link in here, every button on
      every page turns into "Back the film" and points at Kickstarter.
      ───────────────────────────────────────────────────────────────── */
-  kickstarterUrl: "",
+  kickstarterUrl: "https://www.kickstarter.com/projects/echoesofcrimson/echoes-of-crimson",
 
   /* ── THE DATE ─────────────────────────────────────────────────────
      big  = the huge word on the homepage
